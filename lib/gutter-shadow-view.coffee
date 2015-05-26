@@ -1,6 +1,6 @@
 module.exports =
 class GutterShadowView
-  constructor: (serializedState) ->
+  constructor: () ->
     # Create root element
     @element = document.createElement('div')
     @element.classList.add('gutter-shadow')

@@ -1,4 +1,5 @@
 GutterShadowView = require './gutter-shadow-view'
+{View, $} = require 'atom'
 {CompositeDisposable} = require 'atom'
 
 module.exports = GutterShadow =
@@ -7,26 +8,41 @@ module.exports = GutterShadow =
   subscriptions: null
 
   activate: (state) ->
-    @gutterShadowView = new GutterShadowView(state.gutterShadowViewState)
+    # @gutterShadowView = new GutterShadowView(state.gutterShadowViewState)
     # containers = atom.views.getView atom.workspace
     #   .querySelector('.underlayer')
     #   .appendChild @gutterShadowView.getElement()
     console.log 'adding gutter shadow'
-    # atom.views.getView atom.workspace
-    #   .querySelector('.item-views')
-    #   .appendChild @gutterShadowView.getElement()
-    # atom.workspace.observeTextEditors (editor) ->
-    #   editor.querySelector('.underlayer').appendChild @gutterShadowView.getElement()
-    @editorSubscriptions = atom.workspace.observeTextEditors (editor) ->
-      @scrollSubscriptions = editor.onDidChangeScrollLeft (scrollLeft) ->
+    @disposables = new CompositeDisposable
+    editors = []
+
+    @disposables.add atom.workspace.observeTextEditors (editor) ->
+      editors.push editor
+      element = atom.views.getView(editor)
+      root = $(element.rootElement)
+      scrollView = root.find('.scroll-view')
+      scrollView
+        .append(new GutterShadowView().getElement())
+
+    for editor in editors
+      @disposables.add editor.onDidChangeScrollLeft (scrollLeft) ->
+        # # atom.views.getView atom.workspace
+        # #   .querySelector '.scroll-view'
+        # #   .classList.add 'gutter-shadow'
+        # editor.getModel()
         if scrollLeft == 0
           console.log 'remove shadow'
+          # element = atom.views.getView(editor)
+          # root = $(element.rootElement)
+          # root.find('.gutter-shadow').removeClass('active')
         else
           console.log 'add shadow'
+          # element = atom.views.getView(editor)
+          # root = $(element.rootElement)
+          # root.find('.gutter-shadow').addClass('active')
 
   deactivate: ->
-    @editorSubscriptions.dispose()
-    @scrollSubscriptions.dispose()
+    @disposables.dispose()
     @gutterShadowView.destroy()
 
   serialize: ->

@@ -1,21 +1,20 @@
-// The ui-variables file is provided by base themes provided by Atom.
-//
-// See https://github.com/atom/atom-dark-ui/blob/master/styles/ui-variables.less
-// for a full listing of what's available.
 @import "ui-variables";
 
+// TODO: make into settings
 @gutter-shadow-color: #000000;
 @gutter-shadow-opacity: 0.3;
 
-.gutter-shadow {
-  box-shadow: inset 0 0 7px 4px rgba(0, 0, 0, @gutter-shadow-opacity);
-  position: absolute;
-  bottom: -20px;
-  left: 0;
-  right: 0;
-  top: -20px;
+atom-text-editor::shadow {
+  .gutter-shadow {
+    position: absolute;
+    bottom: -20px;
+    left: 0;
+    right: -20px;
+    top: -20px;
+    z-index: 4;
 
-  &.active {
-    box-shadow: inset 0 0 7px 4px blue;
+    &.active {
+      box-shadow: inset 0 0 7px 4px rgba(0, 0, 0, @gutter-shadow-opacity);
+    }
   }
 }
