@@ -30,16 +30,17 @@ module.exports = GutterShadow =
         # #   .querySelector '.scroll-view'
         # #   .classList.add 'gutter-shadow'
         # editor.getModel()
+        activeEditor = atom.workspace.getActiveTextEditor()
         if scrollLeft == 0
           console.log 'remove shadow'
-          # element = atom.views.getView(editor)
-          # root = $(element.rootElement)
-          # root.find('.gutter-shadow').removeClass('active')
+          element = atom.views.getView(activeEditor)
+          root = $(element.rootElement)
+          root.find('.gutter-shadow').removeClass('active')
         else
           console.log 'add shadow'
-          # element = atom.views.getView(editor)
-          # root = $(element.rootElement)
-          # root.find('.gutter-shadow').addClass('active')
+          element = atom.views.getView(activeEditor)
+          root = $(element.rootElement)
+          root.find('.gutter-shadow').addClass('active')
 
   deactivate: ->
     @disposables.dispose()
