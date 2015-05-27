@@ -1,58 +1,32 @@
 GutterShadowView = require './gutter-shadow-view'
-{View, $} = require 'atom'
-{CompositeDisposable} = require 'atom'
+{CompositeDisposable, $} = require 'atom'
 
 module.exports = GutterShadow =
-  gutterShadowView: null
-  modalPanel: null
-  subscriptions: null
+  disposables: null
 
-  activate: (state) ->
-    # @gutterShadowView = new GutterShadowView(state.gutterShadowViewState)
-    # containers = atom.views.getView atom.workspace
-    #   .querySelector('.underlayer')
-    #   .appendChild @gutterShadowView.getElement()
-    console.log 'adding gutter shadow'
+  activate: ->
     @disposables = new CompositeDisposable
-    editors = []
 
     @disposables.add atom.workspace.observeTextEditors (editor) ->
-      editors.push editor
+      gutterShadowView = new GutterShadowView
       element = atom.views.getView(editor)
       root = $(element.rootElement)
       scrollView = root.find('.scroll-view')
-      scrollView
-        .append(new GutterShadowView().getElement())
+      scrollView .append(gutterShadowView.getElement())
 
-    for editor in editors
-      @disposables.add editor.onDidChangeScrollLeft (scrollLeft) ->
-        # # atom.views.getView atom.workspace
-        # #   .querySelector '.scroll-view'
-        # #   .classList.add 'gutter-shadow'
-        # editor.getModel()
-        activeEditor = atom.workspace.getActiveTextEditor()
+      subscription = editor.onDidChangeScrollLeft (scrollLeft) ->
         if scrollLeft == 0
-          console.log 'remove shadow'
-          element = atom.views.getView(activeEditor)
+          element = atom.views.getView(editor)
           root = $(element.rootElement)
           root.find('.gutter-shadow').removeClass('active')
         else
-          console.log 'add shadow'
-          element = atom.views.getView(activeEditor)
+          element = atom.views.getView(editor)
           root = $(element.rootElement)
           root.find('.gutter-shadow').addClass('active')
 
+      editor.onDidDestroy ->
+        subscription.dispose()
+        gutterShadowView.destroy()
+
   deactivate: ->
     @disposables.dispose()
-    @gutterShadowView.destroy()
-
-  serialize: ->
-    gutterShadowViewState: @gutterShadowView.serialize()
-
-  toggle: ->
-    console.log 'GutterShadow was toggled!'
-
-    if @modalPanel.isVisible()
-      @modalPanel.hide()
-    else
-      @modalPanel.show()
