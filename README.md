@@ -1,5 +1,12 @@
-# gutter-shadow package
+# Gutter Shadow
+###### An Atom Package - [Atom.io](https://atom.io/packages/gutter-shadow) : [Github](https://github.com/dsandstrom/atom-gutter-shadow)
 
-A short description of your package.
+Add a shadow under the gutter when you are scrolled away from it.  This makes it easier to tell when you aren't scrolled all the way to the left.
 
-![A screenshot of your package](https://f.cloud.github.com/assets/69169/2290250/c35d867a-a017-11e3-86be-cd7c5bf3ff9b.gif)
+### Todo
+I would like to make the shadow's color, opacity, and size configurable options.  Also, something settable in your UI theme.
+
+### Notes
+In beta.  Issues are welcome.  I'll accept pull requests after I get a few more things completed.
+
+
