@@ -12,17 +12,13 @@ module.exports = GutterShadow =
       element = atom.views.getView(editor)
       root = $(element.rootElement)
       scrollView = root.find('.scroll-view')
-      scrollView .append(gutterShadowView.getElement())
+      scrollView.append(gutterShadowView.getElement())
 
       subscription = editor.onDidChangeScrollLeft (scrollLeft) ->
         if scrollLeft == 0
-          element = atom.views.getView(editor)
-          root = $(element.rootElement)
-          root.find('.gutter-shadow').removeClass('active')
+          gutterShadowView.deactivate(editor)
         else
-          element = atom.views.getView(editor)
-          root = $(element.rootElement)
-          root.find('.gutter-shadow').addClass('active')
+          gutterShadowView.activate(editor)
 
       editor.onDidDestroy ->
         subscription.dispose()
