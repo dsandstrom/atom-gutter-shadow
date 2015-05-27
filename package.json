@@ -7,7 +7,7 @@
     "gutter"
   ],
   "activationCommands": {},
-  "repository": "https://github.com/atom/gutter-shadow",
+  "repository": "https://github.com/dsandstrom/atom-gutter-shadow",
   "license": "MIT",
   "engines": {
     "atom": ">=0.174.0 <2.0.0"
