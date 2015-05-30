@@ -21,4 +21,3 @@ class GutterShadowView
     element = atom.views.getView(editor)
     root = $(element.rootElement)
     root.find('.gutter-shadow').removeClass('active')
-  
