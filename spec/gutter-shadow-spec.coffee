@@ -52,9 +52,18 @@ describe "GutterShadow", ->
         editor.setScrollLeft(0)
         expect(gutterShadow.classList.contains('active')).toBeTruthy()
 
-      it "adds the padding class to the scroll view", ->
-        scrollView = root.querySelector('.scroll-view')
+  describe "alwaysOn config", ->
+    it "adds the padding class to the scroll view", ->
+      cssClass = 'gutter-shadow-left-padding'
+      scrollView = root.querySelector('.scroll-view')
 
-        expect(scrollView).toExist()
-        expect(scrollView.classList .contains('gutter-shadow-left-padding'))
-          .toBeTruthy()
+      expect(scrollView).toExist()
+
+      atom.config.set('gutter-shadow.alwaysOn', false )
+      expect(scrollView.classList.contains(cssClass)).toBeFalsy()
+
+      atom.config.set('gutter-shadow.alwaysOn', true)
+      expect(scrollView.classList.contains(cssClass)).toBeTruthy()
+
+      atom.config.set('gutter-shadow.alwaysOn', false)
+      expect(scrollView.classList.contains(cssClass)).toBeFalsy()
