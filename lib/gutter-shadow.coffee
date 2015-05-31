@@ -8,12 +8,11 @@ module.exports = GutterShadow =
     @disposables = new CompositeDisposable
 
     @disposables.add atom.workspace.observeTextEditors (editor) ->
-      gutterShadowView = new GutterShadowView
-
       element = atom.views.getView(editor)
       scrollView = element.rootElement.querySelector('.scroll-view')
       return unless scrollView
 
+      gutterShadowView = new GutterShadowView
       scrollView.appendChild(gutterShadowView.getElement())
 
       subscription = editor.onDidChangeScrollLeft (scrollLeft) ->

@@ -5,15 +5,18 @@ describe "GutterShadow", ->
 
   beforeEach ->
     workspaceElement = atom.views.getView(atom.workspace).__spacePenView
+
     waitsForPromise ->
       atom.workspace.open('sample.coffee').then (o) ->
         editor = o
         root = atom.views.getView(editor).rootElement
+
     waitsForPromise ->
       atom.packages.activatePackage('gutter-shadow')
+
     workspaceElement.attachToDom()
 
-  describe "when the scrolling", ->
+  describe "when scrolling", ->
     beforeEach ->
       editor.setWidth(10)
       editor.setText('test')
