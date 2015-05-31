@@ -1,7 +1,7 @@
 GutterShadow = require '../lib/gutter-shadow'
 
 describe "GutterShadow", ->
-  [editor, root] = []
+  [workspaceElement, editor, root] = []
 
   beforeEach ->
     workspaceElement = atom.views.getView(atom.workspace).__spacePenView
