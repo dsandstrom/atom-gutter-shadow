@@ -4,7 +4,8 @@ describe "GutterShadow", ->
   [editor, root] = []
 
   beforeEach ->
-    workspaceElement = atom.views.getView(atom.workspace).__spacePenView
+    workspaceElement = atom.views.getView(atom.workspace)#.__spacePenView
+    jasmine.attachToDOM(workspaceElement)
 
     waitsForPromise ->
       atom.workspace.open('sample.coffee').then (o) ->
@@ -14,14 +15,15 @@ describe "GutterShadow", ->
     waitsForPromise ->
       atom.packages.activatePackage('gutter-shadow')
 
-    workspaceElement.attachToDom()
-
   describe "when scrolling", ->
     beforeEach ->
       editor.setWidth(10)
       editor.setText('test')
 
     describe "when shadow is off by default", ->
+      beforeEach ->
+        atom.config.set('gutter-shadow.alwaysOn', false)
+
       it "toggles the active class", ->
         gutterShadow = root.querySelector('.gutter-shadow')
 
