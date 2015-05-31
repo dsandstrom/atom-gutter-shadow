@@ -4,7 +4,7 @@ describe "GutterShadow", ->
   [editor, root] = []
 
   beforeEach ->
-    workspaceElement = atom.views.getView(atom.workspace)#.__spacePenView
+    workspaceElement = atom.views.getView(atom.workspace)
     jasmine.attachToDOM(workspaceElement)
 
     waitsForPromise ->
