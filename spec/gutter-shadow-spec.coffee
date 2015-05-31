@@ -18,7 +18,7 @@ describe "GutterShadow", ->
       editor.setWidth(10)
       editor.setText('test')
 
-    fit "toggles the active class", ->
+    it "toggles the active class", ->
       gutterShadow = root.querySelector('.gutter-shadow')
 
       expect(gutterShadow).toExist()

@@ -1,5 +1,3 @@
-{$} = require 'atom'
-
 module.exports =
 class GutterShadowView
   constructor: ->
@@ -13,11 +11,7 @@ class GutterShadowView
     @element
 
   activate: (editor) ->
-    element = atom.views.getView(editor)
-    root = $(element.rootElement)
-    root.find('.gutter-shadow').addClass('active')
+    @element.classList.add('active')
 
   deactivate: (editor) ->
-    element = atom.views.getView(editor)
-    root = $(element.rootElement)
-    root.find('.gutter-shadow').removeClass('active')
+    @element.classList.remove('active')
