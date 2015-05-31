@@ -51,3 +51,10 @@ describe "GutterShadow", ->
 
         editor.setScrollLeft(0)
         expect(gutterShadow.classList.contains('active')).toBeTruthy()
+
+      it "adds the padding class to the scroll view", ->
+        scrollView = root.querySelector('.scroll-view')
+
+        expect(scrollView).toExist()
+        expect(scrollView.classList .contains('gutter-shadow-left-padding'))
+          .toBeTruthy()
