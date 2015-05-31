@@ -15,10 +15,6 @@ Add a shadow under the gutter when you are scrolled away from it. This makes it 
   </dd>
 </dl>
 
-### Todo
-
-I would like to make the shadow's color, opacity, and size configurable options. Also, something settable in your UI theme.
-
 ### Notes
 
 In beta. Issues are welcome. I'll accept pull requests after I get a few more things completed.
