@@ -1,7 +1,7 @@
 GutterShadow = require '../lib/gutter-shadow'
 
 describe "GutterShadow", ->
-  [workspaceElement, editor, root] = []
+  [editor, root] = []
 
   beforeEach ->
     workspaceElement = atom.views.getView(atom.workspace).__spacePenView
@@ -21,14 +21,31 @@ describe "GutterShadow", ->
       editor.setWidth(10)
       editor.setText('test')
 
-    it "toggles the active class", ->
-      gutterShadow = root.querySelector('.gutter-shadow')
+    describe "when shadow is off by default", ->
+      it "toggles the active class", ->
+        gutterShadow = root.querySelector('.gutter-shadow')
 
-      expect(gutterShadow).toExist()
-      expect(gutterShadow.classList.contains('active')).toBeFalsy()
+        expect(gutterShadow).toExist()
+        expect(gutterShadow.classList.contains('active')).toBeFalsy()
 
-      editor.setScrollLeft(1)
-      expect(gutterShadow.classList.contains('active')).toBeTruthy()
+        editor.setScrollLeft(1)
+        expect(gutterShadow.classList.contains('active')).toBeTruthy()
 
-      editor.setScrollLeft(0)
-      expect(gutterShadow.classList.contains('active')).toBeFalsy()
+        editor.setScrollLeft(0)
+        expect(gutterShadow.classList.contains('active')).toBeFalsy()
+
+    describe "when shadow is always on", ->
+      beforeEach ->
+        atom.config.set('gutter-shadow.alwaysOn', true)
+
+      it "doesn't toggle the active class", ->
+        gutterShadow = root.querySelector('.gutter-shadow')
+
+        expect(gutterShadow).toExist()
+        expect(gutterShadow.classList.contains('active')).toBeTruthy()
+
+        editor.setScrollLeft(1)
+        expect(gutterShadow.classList.contains('active')).toBeTruthy()
+
+        editor.setScrollLeft(0)
+        expect(gutterShadow.classList.contains('active')).toBeTruthy()
