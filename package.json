@@ -1,7 +1,7 @@
 {
   "name": "gutter-shadow",
   "main": "./lib/gutter-shadow",
-  "version": "0.3.0",
+  "version": "0.4.0",
   "description": "Add a shadow when editor is scrolled away from the gutter",
   "keywords": [
     "gutter"
