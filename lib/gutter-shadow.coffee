@@ -11,32 +11,44 @@ module.exports = GutterShadow =
       default: false
       description:
         'The shadow shows up even when scrolled all the way to the left'
+    useBiggerShadow:
+      type: 'boolean'
+      default: false
+      description:
+        'The shadow is larger, can be compined with the "Always On" setting'
 
   activate: ->
     @disposables = new CompositeDisposable
 
     @disposables.add atom.workspace.observeTextEditors (editor) ->
+      editorDisposables = new CompositeDisposable
       gutterScrollView = new GutterScrollView(editor)
       gutterShadowView = new GutterShadowView
 
       gutterScrollView.addGutterShadow(gutterShadowView)
 
-      atom.config.observe 'gutter-shadow.alwaysOn', (alwaysOn) ->
+      editorDisposables.add atom.config.observe 'gutter-shadow.alwaysOn', (alwaysOn) ->
         if alwaysOn
-          gutterShadowView.activate(editor)
+          gutterShadowView.setAlwaysOn()
           gutterScrollView.addPadding()
         else
-          gutterShadowView.deactivate(editor) if editor.getScrollLeft() == 0
+          gutterShadowView.unsetAlwaysOn()
           gutterScrollView.removePadding()
 
-      subscription = editor.onDidChangeScrollLeft (scrollLeft) ->
-        if scrollLeft == 0 and !atom.config.get('gutter-shadow.alwaysOn')
-          gutterShadowView.deactivate(editor)
+      editorDisposables.add atom.config.observe 'gutter-shadow.useBiggerShadow', (useBiggerShadow) ->
+        if useBiggerShadow
+          gutterShadowView.addBiggerShadow()
         else
-          gutterShadowView.activate(editor)
+          gutterShadowView.removeBiggerShadow()
+
+      editorDisposables.add editor.onDidChangeScrollLeft (scrollLeft) ->
+        if scrollLeft == 0
+          gutterShadowView.deactivate()
+        else
+          gutterShadowView.activate()
 
       editor.onDidDestroy ->
-        subscription.dispose()
+        editorDisposables.dispose()
         gutterShadowView.destroy()
 
   deactivate: ->
