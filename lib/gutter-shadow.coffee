@@ -1,3 +1,4 @@
+GutterScrollView = require './gutter-scroll-view'
 GutterShadowView = require './gutter-shadow-view'
 {CompositeDisposable} = require 'atom'
 
@@ -15,20 +16,18 @@ module.exports = GutterShadow =
     @disposables = new CompositeDisposable
 
     @disposables.add atom.workspace.observeTextEditors (editor) ->
-      element = atom.views.getView(editor)
-      scrollView = element.rootElement.querySelector('.scroll-view')
-      return unless scrollView
-
+      gutterScrollView = new GutterScrollView(editor)
       gutterShadowView = new GutterShadowView
-      scrollView.appendChild(gutterShadowView.getElement())
+
+      gutterScrollView.addGutterShadow(gutterShadowView)
 
       atom.config.observe 'gutter-shadow.alwaysOn', (alwaysOn) ->
         if alwaysOn
           gutterShadowView.activate(editor)
-          scrollView.classList.add('gutter-shadow-left-padding')
+          gutterScrollView.addPadding()
         else
           gutterShadowView.deactivate(editor) if editor.getScrollLeft() == 0
-          scrollView.classList.remove('gutter-shadow-left-padding')
+          gutterScrollView.removePadding()
 
       subscription = editor.onDidChangeScrollLeft (scrollLeft) ->
         if scrollLeft == 0 and !atom.config.get('gutter-shadow.alwaysOn')
