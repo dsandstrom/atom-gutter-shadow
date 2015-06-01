@@ -12,14 +12,24 @@ Add a shadow under the gutter when you are scrolled away from it. This makes it 
   <dd>
     The shadow is always visible, even when scrolled all the way to the left.
   </dd>
+
+  <dt>Bigger Shadow</dt>
+  <dd>
+    The scrolled shadow is more pronounced.  If "Always On" is enabled, the shadow changes from small to large when scrolling.
+  </dd>
 </dl>
 
 ### DIY
 If you want to edit the shadow, add this to your _styles.less_ file:
 ```less
 atom-text-editor::shadow {
+  // scrolled shadow
   .gutter-shadow.active {
     box-shadow: inset 0 0 7px 4px rgba(0, 0, 0, .25);
+  }
+  // bigger scrolled shadow
+  .gutter-shadow.active.bigger-shadow {
+    box-shadow: inset 0 0 10px 6px rgba(0, 0, 0, .25);
   }
 }
 ```

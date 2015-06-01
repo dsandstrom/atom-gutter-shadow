@@ -1,3 +1,4 @@
+# FIXME: deactiving package doesn't remove gutter shadow views
 GutterScrollView = require './gutter-scroll-view'
 GutterShadowView = require './gutter-shadow-view'
 {CompositeDisposable} = require 'atom'
@@ -15,15 +16,16 @@ module.exports = GutterShadow =
       type: 'boolean'
       default: false
       description:
-        'The shadow is larger, can be compined with the "Always On" setting'
+        'The scroll shadow is larger, can be compined with the ' +
+        '"Always On" setting'
 
   activate: ->
     @disposables = new CompositeDisposable
 
     @disposables.add atom.workspace.observeTextEditors (editor) ->
       editorDisposables = new CompositeDisposable
-      gutterScrollView = new GutterScrollView(editor)
-      gutterShadowView = new GutterShadowView
+      gutterScrollView  = new GutterScrollView(editor)
+      gutterShadowView  = new GutterShadowView
 
       gutterScrollView.addGutterShadow(gutterShadowView)
 
@@ -37,9 +39,9 @@ module.exports = GutterShadow =
 
       editorDisposables.add atom.config.observe 'gutter-shadow.useBiggerShadow', (useBiggerShadow) ->
         if useBiggerShadow
-          gutterShadowView.addBiggerShadow()
+          gutterShadowView.setBiggerShadow()
         else
-          gutterShadowView.removeBiggerShadow()
+          gutterShadowView.unsetBiggerShadow()
 
       editorDisposables.add editor.onDidChangeScrollLeft (scrollLeft) ->
         if scrollLeft == 0
@@ -50,6 +52,7 @@ module.exports = GutterShadow =
       editor.onDidDestroy ->
         editorDisposables.dispose()
         gutterShadowView.destroy()
+        gutterScrollView.destroy()
 
   deactivate: ->
     @disposables.dispose()

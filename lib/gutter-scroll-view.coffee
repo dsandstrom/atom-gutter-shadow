@@ -7,6 +7,9 @@ class GutterScrollView
   getElement: ->
     @element
 
+  destroy: ->
+    this.removePadding()
+
   addGutterShadow: (gutterShadowView) ->
     @element.appendChild(gutterShadowView.getElement())
 

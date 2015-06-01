@@ -1,3 +1,7 @@
+# 0.4.0
+_May 31, 2015_
+- Added config for bigger shadow
+
 # 0.3.0
 _May 31, 2015_
 - Added less variables for shadow, hopefully settable in UI

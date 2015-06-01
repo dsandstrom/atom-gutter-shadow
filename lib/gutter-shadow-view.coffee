@@ -22,8 +22,8 @@ class GutterShadowView
   unsetAlwaysOn: ->
     @element.classList.remove('always-on')
 
-  addBiggerShadow: ->
+  setBiggerShadow: ->
     @element.classList.add('bigger-shadow')
 
-  removeBiggerShadow: ->
+  unsetBiggerShadow: ->
     @element.classList.remove('bigger-shadow')
