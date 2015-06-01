@@ -16,7 +16,7 @@ Add a shadow under the gutter when you are scrolled away from it. This makes it 
 
 ### DIY
 If you want to edit the shadow, add this to your _styles.less_ file:
-```css
+```less
 atom-text-editor::shadow {
   .gutter-shadow.active {
     box-shadow: inset 0 0 7px 4px rgba(0, 0, 0, .25);
