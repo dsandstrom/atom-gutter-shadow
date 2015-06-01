@@ -1,9 +1,5 @@
-@import "ui-variables";
-
-// TODO: make into settings
-// TODO: add transition
-// @gutter-shadow-color: #000000;
-@gutter-shadow-opacity: 0.25;
+@import 'package-variables';
+@import 'ui-variables';
 
 atom-text-editor::shadow {
   .gutter-shadow {
@@ -16,7 +12,7 @@ atom-text-editor::shadow {
     z-index: 1;
 
     &.active {
-      box-shadow: inset 0 0 7px 4px rgba(0, 0, 0, @gutter-shadow-opacity);
+      box-shadow: inset 0 0 @gutter-shadow-size @gutter-shadow-color;
     }
   }
 
