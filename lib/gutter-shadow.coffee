@@ -50,9 +50,9 @@ module.exports = GutterShadow =
           gutterShadowView.activate()
 
       editor.onDidDestroy ->
-        editorDisposables.dispose()
         gutterShadowView.destroy()
         gutterScrollView.destroy()
+        editorDisposables.dispose()
 
   deactivate: ->
     @disposables.dispose()
