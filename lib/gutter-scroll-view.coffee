@@ -14,7 +14,7 @@ class GutterScrollView
     @element?.appendChild(gutterShadowView.getElement())
 
   addPadding: ->
-    @element.classList.add('gutter-shadow-left-padding')
+    @element?.classList.add('gutter-shadow-left-padding')
 
   removePadding: ->
-    @element.classList.remove('gutter-shadow-left-padding')
+    @element?.classList.remove('gutter-shadow-left-padding')

@@ -11,19 +11,19 @@ class GutterShadowView
     @element
 
   activate:  ->
-    @element.classList.add('active')
+    @element?.classList.add('active')
 
   deactivate: ->
-    @element.classList.remove('active')
+    @element?.classList.remove('active')
 
   setAlwaysOn: ->
-    @element.classList.add('always-on')
+    @element?.classList.add('always-on')
 
   unsetAlwaysOn: ->
-    @element.classList.remove('always-on')
+    @element?.classList.remove('always-on')
 
   setBiggerShadow: ->
-    @element.classList.add('bigger-shadow')
+    @element?.classList.add('bigger-shadow')
 
   unsetBiggerShadow: ->
-    @element.classList.remove('bigger-shadow')
+    @element?.classList.remove('bigger-shadow')
