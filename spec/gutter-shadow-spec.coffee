@@ -15,7 +15,7 @@ describe "GutterShadow", ->
     waitsForPromise ->
       atom.packages.activatePackage('gutter-shadow')
 
-  describe "when scrolling", ->
+  describe "scrolling", ->
     beforeEach ->
       editor.setWidth(10)
       editor.setText('test')

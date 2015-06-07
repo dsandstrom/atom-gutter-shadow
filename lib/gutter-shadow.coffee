@@ -56,5 +56,5 @@ module.exports = GutterShadow =
   deactivate: ->
     for editor in atom.workspace.getTextEditors()
       editorElement = atom.views.getView(editor)
-      editorElement.rootElement.querySelector('.gutter-shadow').remove()
+      editorElement.rootElement.querySelector('.gutter-shadow')?.remove()
     @disposables.dispose()
