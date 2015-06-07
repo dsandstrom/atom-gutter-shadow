@@ -1,3 +1,7 @@
+# 0.5.0
+_June 6, 2015_
+- Remove gutter shadow element on disable
+
 # 0.4.0
 _May 31, 2015_
 - Added config for bigger shadow
