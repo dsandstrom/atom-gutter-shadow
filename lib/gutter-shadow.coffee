@@ -1,4 +1,3 @@
-# FIXME: deactiving package doesn't remove gutter shadow views
 GutterScrollView = require './gutter-scroll-view'
 GutterShadowView = require './gutter-shadow-view'
 {CompositeDisposable} = require 'atom'
@@ -55,4 +54,7 @@ module.exports = GutterShadow =
         editorDisposables.dispose()
 
   deactivate: ->
+    for editor in atom.workspace.getTextEditors()
+      editorElement = atom.views.getView(editor)
+      editorElement.rootElement.querySelector('.gutter-shadow').remove()
     @disposables.dispose()

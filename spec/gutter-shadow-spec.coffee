@@ -78,3 +78,13 @@ describe "GutterShadow", ->
 
       atom.config.set('gutter-shadow.useBiggerShadow', false)
       expect(gutterShadow.classList.contains(cssClass)).toBeFalsy()
+
+  describe "unactivating package", ->
+    it "removes gutter-shadow element", ->
+      cssClass = '.gutter-shadow'
+
+      expect(root.querySelector(cssClass)).toBeTruthy()
+
+      atom.packages.deactivatePackage('gutter-shadow')
+
+      expect(root.querySelector(cssClass)).toBeFalsy()

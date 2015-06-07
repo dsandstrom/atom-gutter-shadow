@@ -5,7 +5,7 @@ class GutterShadowView
     @element.classList.add('gutter-shadow')
 
   destroy: ->
-    @element.remove()
+    @element?.remove()
 
   getElement: ->
     @element
