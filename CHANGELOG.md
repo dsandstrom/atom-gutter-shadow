@@ -1,3 +1,7 @@
+# 0.6.0
+_December 15, 2015_
+- Fix deprecations
+
 # 0.5.0
 _June 6, 2015_
 - Remove gutter shadow element on disable

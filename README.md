@@ -35,6 +35,6 @@ atom-text-editor::shadow {
 ```
 
 ### Notes
-In beta. Issues are welcome. I'll accept pull requests after I get a few more things completed.
+In beta. Issues/PRs are welcome.
 
 [screenshot]: http://content.screencast.com/users/dsandstrom/folders/Jing/media/6e5c193e-29fc-49ff-bab9-2666de15f865/00000039.png
