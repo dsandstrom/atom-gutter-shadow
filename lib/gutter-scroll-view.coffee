@@ -1,7 +1,6 @@
 module.exports =
 class GutterScrollView
-  constructor: (editor) ->
-    editorElement = atom.views.getView(editor)
+  constructor: (editorElement) ->
     @element = editorElement.rootElement.querySelector('.scroll-view')
 
   getElement: ->

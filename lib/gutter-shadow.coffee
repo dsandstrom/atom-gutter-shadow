@@ -22,8 +22,10 @@ module.exports = GutterShadow =
     @disposables = new CompositeDisposable
 
     @disposables.add atom.workspace.observeTextEditors (editor) ->
+      editorElement = atom.views.getView(editor)
+
       editorDisposables = new CompositeDisposable
-      gutterScrollView  = new GutterScrollView(editor)
+      gutterScrollView  = new GutterScrollView(editorElement)
       gutterShadowView  = new GutterShadowView
 
       gutterScrollView.addGutterShadow(gutterShadowView)
@@ -42,7 +44,7 @@ module.exports = GutterShadow =
         else
           gutterShadowView.unsetBiggerShadow()
 
-      editorDisposables.add editor.onDidChangeScrollLeft (scrollLeft) ->
+      editorDisposables.add editorElement.onDidChangeScrollLeft (scrollLeft) ->
         if scrollLeft == 0
           gutterShadowView.deactivate()
         else

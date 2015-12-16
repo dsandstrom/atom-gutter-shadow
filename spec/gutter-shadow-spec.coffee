@@ -1,7 +1,7 @@
 GutterShadow = require '../lib/gutter-shadow'
 
 describe "GutterShadow", ->
-  [editor, root] = []
+  [editor, editorElement, root] = []
 
   beforeEach ->
     workspaceElement = atom.views.getView(atom.workspace)
@@ -9,15 +9,16 @@ describe "GutterShadow", ->
 
     waitsForPromise ->
       atom.workspace.open('sample.coffee').then (o) ->
-        editor = o
-        root = atom.views.getView(editor).rootElement
+        editor        = o
+        editorElement = atom.views.getView(editor)
+        root          = atom.views.getView(editor).rootElement
 
     waitsForPromise ->
       atom.packages.activatePackage('gutter-shadow')
 
   describe "scrolling", ->
     beforeEach ->
-      editor.setWidth(10)
+      editorElement.setWidth(10)
       editor.setText('test')
 
     it "toggles the active class on the gutter shadow", ->
@@ -26,10 +27,10 @@ describe "GutterShadow", ->
       expect(gutterShadow).toExist()
       expect(gutterShadow.classList.contains('active')).toBeFalsy()
 
-      editor.setScrollLeft(1)
+      editorElement.setScrollLeft(1)
       expect(gutterShadow.classList.contains('active')).toBeTruthy()
 
-      editor.setScrollLeft(0)
+      editorElement.setScrollLeft(0)
       expect(gutterShadow.classList.contains('active')).toBeFalsy()
 
   describe "alwaysOn config", ->
