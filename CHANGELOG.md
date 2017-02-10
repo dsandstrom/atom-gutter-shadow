@@ -1,3 +1,7 @@
+# 0.7.0
+_February 10, 2017_
+- Fix deprecations
+
 # 0.6.0
 _December 15, 2015_
 - Fix deprecations
