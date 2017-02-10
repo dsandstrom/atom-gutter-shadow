@@ -18,8 +18,8 @@ describe "GutterShadow", ->
 
   describe "scrolling", ->
     beforeEach ->
-      editorElement.setWidth(10)
-      editor.setText('test')
+      editor.setText('Lorem ipsum dolor sit amet consectetur adipisicing ' +
+                     'elit sed do eiusmod tempor incididunt')
 
     it "toggles the active class on the gutter shadow", ->
       gutterShadow = root.querySelector('.gutter-shadow')
