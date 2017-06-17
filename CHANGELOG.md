@@ -1,3 +1,7 @@
+# 0.8.0
+_June 16, 2017_
+- Remove rootElement
+
 # 0.7.0
 _February 10, 2017_
 - Fix deprecations
