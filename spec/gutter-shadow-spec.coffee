@@ -1,7 +1,7 @@
 GutterShadow = require '../lib/gutter-shadow'
 
 describe "GutterShadow", ->
-  [editor, editorElement, root] = []
+  [editor, editorElement] = []
 
   beforeEach ->
     workspaceElement = atom.views.getView(atom.workspace)
@@ -11,7 +11,6 @@ describe "GutterShadow", ->
       atom.workspace.open('sample.coffee').then (o) ->
         editor        = o
         editorElement = atom.views.getView(editor)
-        root          = atom.views.getView(editor).rootElement
 
     waitsForPromise ->
       atom.packages.activatePackage('gutter-shadow')
@@ -22,7 +21,7 @@ describe "GutterShadow", ->
                      'elit sed do eiusmod tempor incididunt')
 
     it "toggles the active class on the gutter shadow", ->
-      gutterShadow = root.querySelector('.gutter-shadow')
+      gutterShadow = editorElement.querySelector('.gutter-shadow')
 
       expect(gutterShadow).toExist()
       expect(gutterShadow.classList.contains('active')).toBeFalsy()
@@ -36,7 +35,7 @@ describe "GutterShadow", ->
   describe "alwaysOn config", ->
     it "toggles the always-on class on the gutter shadow", ->
       cssClass = 'always-on'
-      gutterShadow = root.querySelector('.gutter-shadow')
+      gutterShadow = editorElement.querySelector('.gutter-shadow')
 
       expect(gutterShadow).toExist()
 
@@ -51,7 +50,7 @@ describe "GutterShadow", ->
 
     it "toggles padding class on the scroll view", ->
       cssClass = 'gutter-shadow-left-padding'
-      scrollView = root.querySelector('.scroll-view')
+      scrollView = editorElement.querySelector('.scroll-view')
 
       expect(scrollView).toExist()
 
@@ -67,7 +66,7 @@ describe "GutterShadow", ->
   describe "useBiggerShadow config", ->
     it "toggles the bigger-shadow class on the gutter shadow", ->
       cssClass = 'bigger-shadow'
-      gutterShadow = root.querySelector('.gutter-shadow')
+      gutterShadow = editorElement.querySelector('.gutter-shadow')
 
       expect(gutterShadow).toExist()
 
@@ -84,8 +83,8 @@ describe "GutterShadow", ->
     it "removes gutter-shadow element", ->
       cssClass = '.gutter-shadow'
 
-      expect(root.querySelector(cssClass)).toBeTruthy()
+      expect(editorElement.querySelector(cssClass)).toBeTruthy()
 
       atom.packages.deactivatePackage('gutter-shadow')
 
-      expect(root.querySelector(cssClass)).toBeFalsy()
+      expect(editorElement.querySelector(cssClass)).toBeFalsy()

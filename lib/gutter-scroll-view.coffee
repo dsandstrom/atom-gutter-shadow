@@ -1,7 +1,7 @@
 module.exports =
 class GutterScrollView
   constructor: (editorElement) ->
-    @element = editorElement.rootElement.querySelector('.scroll-view')
+    @element = editorElement.querySelector('.scroll-view')
 
   getElement: ->
     @element
