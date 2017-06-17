@@ -15,7 +15,7 @@ module.exports = GutterShadow =
       type: 'boolean'
       default: false
       description:
-        'The scroll shadow is larger, can be compined with the ' +
+        'The scroll shadow is larger, can be combined with the ' +
         '"Always On" setting'
 
   activate: ->
