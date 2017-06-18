@@ -1,3 +1,7 @@
+# 1.0.0
+_June 17, 2017_
+- Change shadow style (remove inset)
+
 # 0.8.0
 _June 16, 2017_
 - Remove rootElement

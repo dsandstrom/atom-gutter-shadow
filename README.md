@@ -36,6 +36,6 @@ atom-text-editor {
 
 ### Notes
 * v1.0.0 introduces a style change, remove `inset` from your DIY shadow
-* Issues/PRs are welcome.
+* Issues and PRs are welcome.
 
 [screenshot]: http://content.screencast.com/users/dsandstrom/folders/Jing/media/6e5c193e-29fc-49ff-bab9-2666de15f865/00000039.png
