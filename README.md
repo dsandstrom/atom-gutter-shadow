@@ -25,11 +25,11 @@ If you want to edit the shadow, add this to your _styles.less_ file:
 atom-text-editor {
   // scrolled shadow
   .gutter-shadow.active {
-    box-shadow: inset 0 0 7px 4px rgba(0, 0, 0, .25);
+    box-shadow: 0 0 7px 4px rgba(0, 0, 0, .25);
   }
   // bigger scrolled shadow
   .gutter-shadow.active.bigger-shadow {
-    box-shadow: inset 0 0 10px 6px rgba(0, 0, 0, .25);
+    box-shadow: 0 0 10px 6px rgba(0, 0, 0, .25);
   }
 }
 ```
