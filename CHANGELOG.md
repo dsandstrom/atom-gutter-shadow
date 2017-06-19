@@ -1,3 +1,7 @@
+# 1.1.0
+_June 19, 2017_
+- Consolidate less files
+
 # 1.0.0
 _June 17, 2017_
 - Change shadow style (remove inset)
